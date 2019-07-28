@@ -80,7 +80,7 @@ function addMsg(msg) {
             msgPre.innerHTML = "[群红包消息]" + convertMsgtoHtml(msg);
             break;
         case webim.GROUP_MSG_SUB_TYPE.LOVEMSG://群点赞消息
-            //业务自己可以增加逻辑，比如展示点赞动画效果
+            //业务自己可以增加逻辑，例如展示点赞动画效果
             msgPre.innerHTML = "[群点赞消息]" + convertMsgtoHtml(msg);
             //展示点赞动画
             //showLoveMsgAnimation();
@@ -297,7 +297,7 @@ function convertGroupTipMsgToHtml(content) {
     var maxIndex = WEB_IM_GROUP_TIP_MAX_USER_COUNT - 1;
     var opType,opUserId,userIdList;
     opType=content.getOpType();//群提示消息类型（操作类型）
-    opUserId=content.getOpUserId();//操作人 id
+    opUserId=content.getOpUserId();//操作人 ID
     switch (opType) {
         case webim.GROUP_TIP_TYPE.JOIN://加入群
             userIdList=content.getUserIdList();
@@ -526,7 +526,7 @@ function onSendMsg() {
 }
 ```
 
-## 上传图片 （高版本浏览器）
+## 上传图片（高版本浏览器）
 
 目前 Demo 采用了 H5 FileAPI 读取图片，并将图片二进制数据转换成 BASE64 编码进行分片上传，理论上没有大小限制。**函数名：**
 
@@ -578,7 +578,7 @@ function uploadPic() {
 }
 ```
 
-## 上传图片 （低版本浏览器 IE8、9）
+## 上传图片（低版本浏览器 IE8、9）
 
 在低版本浏览器（IE8、9）中，Demo 采用了表单来上传图片，最大支持 10M 图片的上传。**函数名：**
 
@@ -631,7 +631,7 @@ function uploadPicLowIE() {
 
 
 
-## 上传文件 （高版本浏览器）
+## 上传文件（高版本浏览器）
 
 目前 demo 采用了 H5 FileAPI 读取文件，并将文件二进制数据转换成 base64 编码进行分片上传，理论上没有大小限制。
 >?当前版本仅支持上传图片文件。
@@ -664,8 +664,8 @@ function uploadFileByBase64() {
         'toAccount': selToID, //接收者，selToID 为全局变量，表示当前正在进行的聊天 ID，当聊天类型为私聊时，该值为好友帐号，否则为群号。
         'businessType': businessType,//文件的使用业务类型
         'fileType':webim.UPLOAD_RES_TYPE.FILE,//表示文件
-        'fileMd5': '6f25dc54dc2cd47375e8b43045de642a', //文件md5
-        'totalSize': 56805, //文件大小,Byte
+        'fileMd5': '6f25dc54dc2cd47375e8b43045de642a', //文件 md5
+        'totalSize': 56805, //文件大小，Byte
         'base64Str': 'xxxxxxxxxxx' //文件 base64 编码
            
     };
@@ -682,7 +682,7 @@ function uploadFileByBase64() {
 }
 ```
 
-## 上传文件 （低版本浏览器 IE8、9）
+## 上传文件（低版本浏览器 IE8、9）
 
 在低版本浏览器（IE8、9）中，demo 采用了表单来上传文件，最大支持 10M 文件的上传。
 >?当前版本仅支持上传图片文件。
@@ -713,8 +713,8 @@ function uploadFileLowIE() {
     }
     //封装上传文件请求
     var opt = {
-        'formId': 'updli_file_form', //上传文件表单 id
-        'fileId': 'upload_low_ie_file', //file 控件 id
+        'formId': 'updli_file_form', //上传文件表单 ID
+        'fileId': 'upload_low_ie_file', //file 控件 ID
         'To_Account': selToID, // 接收者，selToID 为全局变量，表示当前正在进行的聊天 ID，当聊天类型为私聊时，该值为好友帐号，否则为群号。
         'businessType': businessType,//文件的使用业务类型
         'fileType': webim.UPLOAD_RES_TYPE.FILE//表示上传文件
@@ -803,7 +803,7 @@ function sendPic(images) {
 
 >!确保其他终端上传的语音格式是 MP3 格式（所有主流浏览器下的 audio 控件都兼容 MP3，除了 IE8 下不支持使用 audio 标签播放语音）。
 
-## 发送消息（文件 ）
+## 发送消息（文件）
 
 ```javascript
 function sendFile(file,fileName) {
@@ -838,7 +838,7 @@ function sendFile(file,fileName) {
 ```
 
 
-## 发送消息(自定义)
+## 发送消息（自定义）
 
 ```javascript
 /* function sendMsg
@@ -927,7 +927,7 @@ function sendCustomMsg() {
 syncMsgs: function(cbOk, cbErr) {},
 ```
 
-**示例: **
+**示例：**
 
 ```javascript
 webim.syncMsgs(onMsgNotify);
@@ -968,13 +968,13 @@ var getLastC2CHistoryMsgs = function (cbOk, cbError) {
     webim.getC2CHistoryMsgs(
             options,
             function (resp) {
-                var complete = resp.Complete;//是否还有历史消息可以拉取，1-表示没有，0-表示有
+                var complete = resp.Complete;//是否还有历史消息可以拉取，1表示没有，0表示有
                 var retMsgCount = resp.MsgCount;//返回的消息条数，小于或等于请求的消息条数，小于的时候，说明没有历史消息可拉取了
                 if (resp.MsgList.length == 0) {
                     webim.Log.error("没有历史消息了:data=" + JSON.stringify(options));
                     return;
                 }
-                getPrePageC2CHistroyMsgInfoMap[selToID] = {//保留服务器返回的最近消息时间和消息 Key,用于下次向前拉取历史消息
+                getPrePageC2CHistroyMsgInfoMap[selToID] = {//保留服务器返回的最近消息时间和消息 Key，用于下次向前拉取历史消息
                     'LastMsgTime': resp.LastMsgTime,
                     'MsgKey': resp.MsgKey
                 };
@@ -1001,10 +1001,10 @@ var getLastC2CHistoryMsgs = function (cbOk, cbError) {
 syncGroupMsgs: function(options, cbOk, cbErr) {},
 ```
 
-**示例: **
+**示例：**
 
 ```javascript
-//获取最新的群历史消息,用于切换群组聊天时，重新拉取群组的聊天消息
+//获取最新的群历史消息，用于切换群组聊天时，重新拉取群组的聊天消息
 var getLastGroupHistoryMsgs = function (cbOk, cbError) {
 
     if (selType == webim.SESSION_TYPE.C2C) {
